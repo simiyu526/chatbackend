@@ -8,7 +8,25 @@ dotenv.config();
 
 const router = express.Router();
 
-// Register a new user
+// ✅ Create `users` table if it doesn't exist
+const createUsersTableQuery = `
+  CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+`;
+
+db.query(createUsersTableQuery, (err) => {
+  if (err) {
+    console.error('Failed to create users table:', err);
+  } else {
+    console.log('Users table ready!');
+  }
+});
+
+// 🚀 Register a new user
 router.post('/register', (req, res) => {
   const { username, password } = req.body;
 
@@ -23,7 +41,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-// Login route
+// 🔐 Login route
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
 
