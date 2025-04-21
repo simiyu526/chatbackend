@@ -22,7 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/messages', messagesRoutes);
 
 // Socket.IO connection
-io.use(verifyToken);
+
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.user.username);
