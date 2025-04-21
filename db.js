@@ -1,10 +1,10 @@
 import mysql from 'mysql2';
 
 const db = mysql.createConnection({
-  host:"localhost",
-  user: "root",
-  password: "god10",
-  database: "chat_db",
+  host:"mysql-chat-db.alwaysdata.net",
+  user: "chat-db",
+  password: "godjesus10",
+  database: "chat-db_chat",
 });
 
 db.connect((err) => {
